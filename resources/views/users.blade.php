@@ -31,7 +31,31 @@
                                            class="btn btn-primary btn-sm">Approve</a></td>
                                 </tr>
                             @empty
-                                @foreach($all as $a)
+                                <tr>
+                                    <td colspan="4">No users found.</td>
+                                </tr>
+                            @endforelse
+                        </table>
+                    </div>
+
+                    <div class="card-header">Users List to Activate/Deactivate</div>
+
+                    <div class="card-body">
+
+                        @if (session('message'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+
+                        <table class="table">
+                            <tr>
+                                <th>User name</th>
+                                <th>Email</th>
+                                <th>Registered at</th>
+                                <th></th>
+                            </tr>
+                            @foreach($all as $a)
                                 <tr>
                                     <td>{{ $a->name }}</td>
                                     <td>{{ $a->email }}</td>
@@ -41,8 +65,7 @@
                                     <td><a href="{{ route('admin.users.deactivate', $a->id) }}"
                                            class="btn btn-primary btn-sm">Deactivate</a></td>
                                 </tr>
-                                @endforeach
-                            @endforelse
+                            @endforeach
                         </table>
                     </div>
                 </div>
